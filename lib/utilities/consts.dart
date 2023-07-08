@@ -6,9 +6,8 @@ import 'package:prayers_times/utilities/getCurrent.dart';
 int month = getCurrentMonth();
 int year = getCurrentYear();
 String baseUrl = 'http://api.aladhan.com/v1/calendar/$year/$month?latitude=30.033333&longitude=31.233334&method=2';
-Color timesBackColor = Color.fromARGB(68, 32, 83, 126);
+
 Color arrowsColor = Color.fromARGB(199, 255, 2, 120);
-Color titlesColor = Color.fromARGB(242, 12, 4, 34);
 
 
 displayTxtStyle ({ double fSize = 20 , fColor = const Color.fromARGB(255, 55, 0, 255) ,fWeight = FontWeight.w600 } ) {

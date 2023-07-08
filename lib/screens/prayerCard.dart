@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:prayers_times/utilities/consts.dart';
 import '../model/PrayTimes/prayTimeModel.dart';
 
-Widget buildDayTimeCard(PrayerData prayerTime) {
+Widget buildDayTimeCard(BuildContext context ,PrayerData prayerTime , Color ftColor) {
   String fajr = prayerTime.timings.fajr.split(' ')[0];
   DateTime fajrDT = intl.DateFormat('HH:mm').parse(fajr);
   String fajrT = intl.DateFormat('hh:mm').format(fajrDT);
@@ -46,7 +46,7 @@ Widget buildDayTimeCard(PrayerData prayerTime) {
           borderRadius: BorderRadius.only(
               bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30)),
           shape: BoxShape.rectangle,
-          color: timesBackColor,
+          color: Theme.of(context).colorScheme.secondary,
         ),
         child: Directionality(
           textDirection: TextDirection.rtl,
@@ -60,11 +60,11 @@ Widget buildDayTimeCard(PrayerData prayerTime) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("الفجر", style: displayTxtStyle()),
+                  Text("الفجر", style: displayTxtStyle( fColor: ftColor , )),
                   SizedBox(
                     width: 10,
                   ),
-                  Text(fajrT, style: displayTxtStyle())
+                  Text(fajrT, style: displayTxtStyle(fColor: ftColor))
                 ],
               ),
               SizedBox(
@@ -73,11 +73,11 @@ Widget buildDayTimeCard(PrayerData prayerTime) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("الضحي", style: displayTxtStyle()),
+                  Text("الضحي", style: displayTxtStyle(fColor: ftColor)),
                   SizedBox(
                     width: 10,
                   ),
-                  Text(dohaT, style: displayTxtStyle())
+                  Text(dohaT, style: displayTxtStyle(fColor: ftColor))
                 ],
               ),
               SizedBox(
@@ -86,11 +86,11 @@ Widget buildDayTimeCard(PrayerData prayerTime) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("الظهر", style: displayTxtStyle()),
+                  Text("الظهر", style: displayTxtStyle(fColor: ftColor)),
                   SizedBox(
                     width: 10,
                   ),
-                  Text(duhurT, style: displayTxtStyle())
+                  Text(duhurT, style: displayTxtStyle(fColor: ftColor))
                 ],
               ),
               SizedBox(
@@ -99,11 +99,11 @@ Widget buildDayTimeCard(PrayerData prayerTime) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("العصر", style: displayTxtStyle()),
+                  Text("العصر", style: displayTxtStyle(fColor: ftColor)),
                   SizedBox(
                     width: 10,
                   ),
-                  Text(asrT, style: displayTxtStyle())
+                  Text(asrT, style: displayTxtStyle(fColor: ftColor))
                 ],
               ),
               SizedBox(
@@ -112,11 +112,11 @@ Widget buildDayTimeCard(PrayerData prayerTime) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("المغرب", style: displayTxtStyle()),
+                  Text("المغرب", style: displayTxtStyle(fColor: ftColor)),
                   SizedBox(
                     width: 10,
                   ),
-                  Text(maghribT, style: displayTxtStyle())
+                  Text(maghribT, style: displayTxtStyle(fColor: ftColor))
                 ],
               ),
               SizedBox(
@@ -125,11 +125,11 @@ Widget buildDayTimeCard(PrayerData prayerTime) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("العشاء", style: displayTxtStyle()),
+                  Text("العشاء", style: displayTxtStyle(fColor: ftColor)),
                   SizedBox(
                     width: 10,
                   ),
-                  Text(ishaT, style: displayTxtStyle())
+                  Text(ishaT, style: displayTxtStyle(fColor: ftColor))
                 ],
               ),
               SizedBox(

@@ -1,11 +1,14 @@
-
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print, unused_local_variable, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:prayers_times/apiClient/prayTimeApiClient.dart';
+import 'package:prayers_times/theme/darkTheme.dart';
+import 'package:prayers_times/theme/lightTheme.dart';
 import 'package:prayers_times/utilities/getCurrent.dart';
 import 'package:prayers_times/model/PrayTimes/prayTimeModel.dart';
 import 'package:prayers_times/screens/prayerCard.dart';
+import 'package:provider/provider.dart';
+import '../theme/themeNotifier.dart';
 import '../utilities/consts.dart';
 
 class PrayersTimesScreen extends StatefulWidget {
@@ -18,6 +21,9 @@ class PrayersTimesScreen extends StatefulWidget {
 class _PrayersTimesScreenState extends State<PrayersTimesScreen> {
   late Future<List<PrayerData>> _prayerTimes;
   int _currentIndex = getCurrentDay() - 1;
+  String backgroundImageAsset = "assets/images/background.jpg";
+  String masgedImg = "assets/images/masged1.png";
+  Color ftColor = Color.fromARGB(255, 5, 9, 235);
 
   @override
   void initState() {
@@ -38,37 +44,57 @@ class _PrayersTimesScreenState extends State<PrayersTimesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/images/background.jpg"),
-                fit: BoxFit.cover)),
+                image: AssetImage( backgroundImageAsset ), fit: BoxFit.cover)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 25),
+          padding:  EdgeInsets.symmetric(vertical: 25),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Stack(alignment: Alignment.topCenter, children: [
-                Image.asset("assets/images/masged1.png"),
+                Image.asset(masgedImg),
                 Positioned(
                   left: 10,
-                  child: Image.asset(
-                    _currentIndex % 2 == 0
+                  child: IconButton(
+                    onPressed: () {
+
+                      // final isLightMode = themeNotifier.getTheme().brightness == Brightness.light;
+                      final newTheme = themeNotifier.getTheme().brightness==Brightness.light  ? darkTheme : lightTheme ;
+                      final newMasged = newTheme == lightTheme?
+                      "assets/images/masged1.png" : 
+                      "assets/images/Dmasged1.png" ;
+                      final newBackground = newTheme == lightTheme
+                          ? "assets/images/background.jpg"
+                          : "assets/images/Blackbackground.jpg";
+
+                          final newTextColor = newTheme == lightTheme ? Color.fromARGB(255, 5, 9, 235) : Colors.yellow;
+
+                          setState(() {
+                            backgroundImageAsset = newBackground;
+                            masgedImg = newMasged;
+                            ftColor = newTextColor;
+                           
+                          });
+                      themeNotifier.setTheme(newTheme, newBackground , newMasged);
+                    },
+                    icon: Image.asset(
+                      themeNotifier.getTheme() == lightTheme
                         ? "assets/images/darkMode.png"
-                        : "assets/images/lightMode.png",
-                    height: 30,
-                    width: 30,
+                          : "assets/images/lightMode.png",
+                      height: 30,
+                      width: 30,
+                    ),
                   ),
                 ),
               ]),
               const SizedBox(
                 height: 20,
-              ),
-              Text(
-                "Welcome ",
-                style: displayTxtStyle(),
               ),
               FutureBuilder<List<PrayerData>>(
                   future: _prayerTimes,
@@ -108,7 +134,8 @@ class _PrayersTimesScreenState extends State<PrayersTimesScreen> {
                                     topLeft: Radius.circular(30),
                                     topRight: Radius.circular(30),
                                   ),
-                                  color: timesBackColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
@@ -141,7 +168,9 @@ class _PrayersTimesScreenState extends State<PrayersTimesScreen> {
                                               .weekday['ar']!,
                                           style: displayTxtStyle(
                                             fSize: 30,
-                                            fColor: titlesColor,
+                                            fColor: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
                                           ),
                                         ),
                                         const SizedBox(
@@ -154,7 +183,9 @@ class _PrayersTimesScreenState extends State<PrayersTimesScreen> {
                                               .date,
                                           style: displayTxtStyle(
                                             fSize: 18,
-                                            fColor: titlesColor,
+                                            fColor: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
                                           ),
                                         ),
                                         const SizedBox(
@@ -181,7 +212,7 @@ class _PrayersTimesScreenState extends State<PrayersTimesScreen> {
                               ),
                             ),
                           ),
-                          buildDayTimeCard(prayerTimes[_currentIndex]),
+                          buildDayTimeCard(context, prayerTimes[_currentIndex] , ftColor),
                         ],
                       );
                     }
