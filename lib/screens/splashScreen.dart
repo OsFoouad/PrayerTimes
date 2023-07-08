@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, file_names
+// ignore_for_file: prefer_const_constructors, file_names, unused_import
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:prayers_times/screens/prayersTimesScreen.dart';
@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(Duration(seconds: 2), () {
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => prayersTimesScreen()));
+          MaterialPageRoute(builder: (context) => PrayersTimesScreen()));
     });
   }
 
