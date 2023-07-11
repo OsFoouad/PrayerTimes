@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:prayers_times/apiClient/prayTimeApiClient.dart';
+import 'package:prayers_times/screens/getNextPray.dart';
 import 'package:prayers_times/theme/darkTheme.dart';
 import 'package:prayers_times/theme/lightTheme.dart';
 import 'package:prayers_times/utilities/getCurrent.dart';
@@ -45,14 +46,14 @@ class _PrayersTimesScreenState extends State<PrayersTimesScreen> {
   @override
   Widget build(BuildContext context) {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
-
+    int day = getCurrentDay();
     return Scaffold(
       body: Container(
-        decoration:  BoxDecoration(
+        decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage( backgroundImageAsset ), fit: BoxFit.cover)),
+                image: AssetImage(backgroundImageAsset), fit: BoxFit.cover)),
         child: Padding(
-          padding:  EdgeInsets.symmetric(vertical: 25),
+          padding: EdgeInsets.symmetric(vertical: 25),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,29 +64,33 @@ class _PrayersTimesScreenState extends State<PrayersTimesScreen> {
                   left: 10,
                   child: IconButton(
                     onPressed: () {
-
                       // final isLightMode = themeNotifier.getTheme().brightness == Brightness.light;
-                      final newTheme = themeNotifier.getTheme().brightness==Brightness.light  ? darkTheme : lightTheme ;
-                      final newMasged = newTheme == lightTheme?
-                      "assets/images/masged1.png" : 
-                      "assets/images/Dmasged1.png" ;
+                      final newTheme = themeNotifier.getTheme().brightness ==
+                              Brightness.light
+                          ? darkTheme
+                          : lightTheme;
+                      final newMasged = newTheme == lightTheme
+                          ? "assets/images/masged1.png"
+                          : "assets/images/Dmasged1.png";
                       final newBackground = newTheme == lightTheme
                           ? "assets/images/background.jpg"
                           : "assets/images/Blackbackground.jpg";
 
-                          final newTextColor = newTheme == lightTheme ? Color.fromARGB(255, 5, 9, 235) : Colors.yellow;
+                      final newTextColor = newTheme == lightTheme
+                          ? Color.fromARGB(255, 5, 9, 235)
+                          : Colors.yellow;
 
-                          setState(() {
-                            backgroundImageAsset = newBackground;
-                            masgedImg = newMasged;
-                            ftColor = newTextColor;
-                           
-                          });
-                      themeNotifier.setTheme(newTheme, newBackground , newMasged);
+                      setState(() {
+                        backgroundImageAsset = newBackground;
+                        masgedImg = newMasged;
+                        ftColor = newTextColor;
+                      });
+                      themeNotifier.setTheme(
+                          newTheme, newBackground, newMasged);
                     },
                     icon: Image.asset(
                       themeNotifier.getTheme() == lightTheme
-                        ? "assets/images/darkMode.png"
+                          ? "assets/images/darkMode.png"
                           : "assets/images/lightMode.png",
                       height: 30,
                       width: 30,
@@ -212,7 +217,15 @@ class _PrayersTimesScreenState extends State<PrayersTimesScreen> {
                               ),
                             ),
                           ),
-                          buildDayTimeCard(context, prayerTimes[_currentIndex] , ftColor),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          getNextPray(context, prayerTimes[day - 1], ftColor),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          buildDayTimeCard(
+                              context, prayerTimes[_currentIndex], ftColor),
                         ],
                       );
                     }

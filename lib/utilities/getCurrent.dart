@@ -1,5 +1,4 @@
 // ignore_for_file: non_constant_identifier_names, file_names
-
 int getCurrentDay() {
   DateTime now = DateTime.now();
   return now.day;
@@ -21,3 +20,4 @@ String getCurrentHourMinute() {
       '${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}';
   return currentTime;
 }
+

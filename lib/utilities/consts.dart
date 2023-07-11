@@ -17,3 +17,14 @@ displayTxtStyle ({ double fSize = 20 , fColor = const Color.fromARGB(255, 55, 0,
     color: fColor
   );
 }
+
+List<String> prayerNames = [
+    'الفجر',
+    'الضحى',
+    'الظهر',
+    'العصر',
+    'المغرب',
+    'العشاء',
+  ];
+
+  

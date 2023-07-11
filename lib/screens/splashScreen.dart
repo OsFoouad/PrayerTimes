@@ -30,6 +30,8 @@ class _SplashScreenState extends State<SplashScreen> {
           padding: const EdgeInsets.all(30.0),
           child: Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 height: 30,
@@ -43,8 +45,8 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               Image.asset(
                 "assets/images/mosqueIcon.png",
-                height: MediaQuery.of(context).size.height - 300,
-                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 2 ,
+                width: MediaQuery.of(context).size.width/2 ,
               ),
               SizedBox(
                 height: 5,
