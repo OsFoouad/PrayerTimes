@@ -8,4 +8,4 @@ i used tween animation to move the back rectangle from left and right and this g
 the next steps will be handle no connection result ,  detect the current location and give you the times for your place <3
 </p>
 
-<img src="https://github.com/OsFoouad/PrayerTimes/blob/main/pt.png" width="300" > <img src="https://github.com/OsFoouad/PrayerTimes/blob/main/Darkpt.png" width="300" >
+<img src="https://github.com/OsFoouad/PrayerTimes/blob/main/lightScreen.png" width="300" > <img src="https://github.com/OsFoouad/PrayerTimes/blob/main/darkScreen.png" width="300" >
