@@ -11,7 +11,8 @@ Widget getNextPray(BuildContext context, PrayerData prayerTime, ftColor) {
   intl.DateFormat originalFormat = intl.DateFormat('dd-MM-yyyy');
   intl.DateFormat reversedFormat = intl.DateFormat('yyyy-MM-dd');
 
-  int nextPrayIndex = 0;
+  int nextPrayIndex = 6;
+  String? result;
 
   List<String> pTimes = [
     prayerTime.timings.fajr.split(' ')[0],
@@ -37,29 +38,32 @@ Widget getNextPray(BuildContext context, PrayerData prayerTime, ftColor) {
     if (now.isBefore(timesInDateTimesForm[i])) {
       nextPrayIndex = i;
       break;
-    } else {}
+    }
   }
 
-//handle the next praytime time format
-  //hh:mm string
-  String nextPray = pTimes[nextPrayIndex];
-  // prepare today date as yyyy-mm-dd
-  DateTime dT = originalFormat.parse(prayerTime.date.gregorian.date);
-  String revDate = reversedFormat.format(dT);
+  if (0 <= nextPrayIndex && nextPrayIndex <= 5) {
+    //handle the next praytime time format
+    //hh:mm string
+    String nextPray = pTimes[nextPrayIndex];
+    // prepare today date as yyyy-mm-dd
+    DateTime dT = originalFormat.parse(prayerTime.date.gregorian.date);
+    String revDate = reversedFormat.format(dT);
 // parse full next pray time
-  DateTime nextPrayDT = intl.DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
-      .parse("$revDate $nextPray:00.000");
+    DateTime nextPrayDT = intl.DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
+        .parse("$revDate $nextPray:00.000");
 
 // get the rest of time untill this pray
-  Duration timeUntillNextPray = nextPrayDT.difference(now);
-  String timeUntill =
-      "${timeUntillNextPray.inHours}:${timeUntillNextPray.inMinutes.remainder(60)}";
+    Duration timeUntillNextPray = nextPrayDT.difference(now);
+    String timeUntill =
+        "${timeUntillNextPray.inHours}:${timeUntillNextPray.inMinutes.remainder(60)}";
+    result = "صلاة ${prayerNames[nextPrayIndex]} بعد $timeUntill";
+  } else if (nextPrayIndex == 6) {
+    result = "انتهت صلاوتك اليوم .. تقبل الله منا ومنكم";
+  }
 
   // print("==date : ${prayerTime.date.gregorian.date}");
   // print("==nextPrayIndex : $nextPrayIndex");
   // print("==prayName : ${prayerNames[nextPrayIndex]}");
-
-  // ناخد بالنا اي اللي هيحصل بعد العشا
 
 // the ui of this part
   return Padding(
@@ -73,8 +77,7 @@ Widget getNextPray(BuildContext context, PrayerData prayerTime, ftColor) {
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 8.0),
-        child: Text("صلاة ${prayerNames[nextPrayIndex]} بعد $timeUntill",
-            style: displayTxtStyle(fColor: ftColor)),
+        child: Text(result!, style: displayTxtStyle(fColor: ftColor)),
       ),
     ),
   );
