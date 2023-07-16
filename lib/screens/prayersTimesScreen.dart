@@ -1,13 +1,16 @@
-// ignore_for_file: file_names, avoid_print, unused_local_variable, prefer_const_constructors
+// ignore_for_file: file_names, avoid_print, unused_local_variable, prefer_const_constructors, unused_element, unused_import
 
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:prayers_times/apiClient/prayTimeApiClient.dart';
+import 'package:prayers_times/model/PrayTimes/prayTimeModel.dart';
+import 'package:prayers_times/screens/currentCity.dart';
 import 'package:prayers_times/screens/getNextPray.dart';
+import 'package:prayers_times/screens/prayerCard.dart';
 import 'package:prayers_times/theme/darkTheme.dart';
 import 'package:prayers_times/theme/lightTheme.dart';
 import 'package:prayers_times/utilities/getCurrent.dart';
-import 'package:prayers_times/model/PrayTimes/prayTimeModel.dart';
-import 'package:prayers_times/screens/prayerCard.dart';
 import 'package:provider/provider.dart';
 import '../theme/themeNotifier.dart';
 import '../utilities/consts.dart';
@@ -25,11 +28,26 @@ class _PrayersTimesScreenState extends State<PrayersTimesScreen> {
   String backgroundImageAsset = "assets/images/background.jpg";
   String masgedImg = "assets/images/masged1.png";
   Color ftColor = Color.fromARGB(255, 5, 9, 235);
+  String _cityName = ' ';
 
   @override
   void initState() {
     super.initState();
     _prayerTimes = _fetchPrayerTimes();
+    _fetchLocation();
+  }
+
+  Future<void> _fetchLocation() async {
+    try {
+      GetLocation getLocation = GetLocation();
+      String cn = await getLocation.getCurrentLocation();
+      setState(() {
+        _cityName = cn;
+        print(_cityName);
+      });
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   Future<List<PrayerData>> _fetchPrayerTimes() async {
@@ -100,6 +118,10 @@ class _PrayersTimesScreenState extends State<PrayersTimesScreen> {
               ]),
               const SizedBox(
                 height: 20,
+              ),
+              Text(
+                _cityName,
+                style: displayTxtStyle(fColor: ftColor),
               ),
               FutureBuilder<List<PrayerData>>(
                   future: _prayerTimes,
