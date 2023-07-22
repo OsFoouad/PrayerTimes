@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors, avoid_print, non_constant_identifier_names, unused_local_variable, unused_import
+// ignore_for_file: prefer_const_constructors, avoid_print, non_constant_identifier_names, unused_local_variable,, unused_import
 
-import 'package:flutter/material.dart';
-import 'package:prayers_times/screens/prayersTimesScreen.dart';
 import 'package:prayers_times/screens/splashScreen.dart';
+import 'package:flutter/material.dart';
+import 'package:prayers_times/screens/Qiblah/qiblah_screen.dart';
 import 'package:prayers_times/theme/lightTheme.dart';
 import 'package:prayers_times/theme/themeNotifier.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
     final masgedImageAsset = themeNotifier.getMasgedImageAsset();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      // home: SplashScreen(),
+      home: QiblahScreen(),
       theme: themeNotifier.getTheme(),
     );
   }

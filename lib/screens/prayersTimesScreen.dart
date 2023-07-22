@@ -1,8 +1,6 @@
-// ignore_for_file: file_names, avoid_print, unused_local_variable, prefer_const_constructors, unused_element, unused_import
+// ignore_for_file: file_names, avoid_print, unused_local_variable, prefer_const_constructors, unused_element, 
 
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:prayers_times/apiClient/prayTimeApiClient.dart';
 import 'package:prayers_times/model/PrayTimes/prayTimeModel.dart';
 import 'package:prayers_times/screens/currentCity.dart';
@@ -12,6 +10,7 @@ import 'package:prayers_times/theme/darkTheme.dart';
 import 'package:prayers_times/theme/lightTheme.dart';
 import 'package:prayers_times/utilities/getCurrent.dart';
 import 'package:provider/provider.dart';
+
 import '../theme/themeNotifier.dart';
 import '../utilities/consts.dart';
 
