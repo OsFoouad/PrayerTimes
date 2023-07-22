@@ -3,7 +3,9 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:prayers_times/screens/Qiblah/qiblah_direction.dart';
 
 class QiblahScreen extends StatefulWidget {
-  const QiblahScreen({super.key});
+  const QiblahScreen({
+    super.key,
+  });
 
   @override
   State<QiblahScreen> createState() => _QiblahScreenState();

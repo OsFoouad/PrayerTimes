@@ -27,6 +27,12 @@ class _QiblahDireViewState extends State<QiblahDireView>
   }
 
   @override
+  void dispose() {
+    FlutterQiblah().dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -39,10 +45,10 @@ class _QiblahDireViewState extends State<QiblahDireView>
               final qiblaDirection = snapshot.data;
               animation = Tween(
                 begin: begin,
-                end: (qiblaDirection!.qiblah * (pi / 100) * -1),
+                end: (qiblaDirection!.qiblah * (pi / 180) * -1),
               ).animate(_animationController!);
 
-              begin = (qiblaDirection.qiblah * (pi / 100) * -1);
+              begin = (qiblaDirection.qiblah * (pi / 180) * -1);
               _animationController!.forward(from: 0);
 
               return Center(
@@ -50,7 +56,11 @@ class _QiblahDireViewState extends State<QiblahDireView>
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "Qiblah Compass",
+                      "اتجاة القبلة",
+                      style: TextStyle(fontSize: 30),
+                    ),
+                    Text(
+                      "${qiblaDirection.offset.toStringAsFixed(3)}°",
                       style: TextStyle(fontSize: 20),
                     ),
                     AnimatedBuilder(

@@ -1,8 +1,9 @@
-// ignore_for_file: file_names, avoid_print, unused_local_variable, prefer_const_constructors, unused_element, 
+// ignore_for_file: file_names, avoid_print, unused_local_variable, prefer_const_constructors,
 
 import 'package:flutter/material.dart';
 import 'package:prayers_times/apiClient/prayTimeApiClient.dart';
 import 'package:prayers_times/model/PrayTimes/prayTimeModel.dart';
+import 'package:prayers_times/screens/Qiblah/qiblah_screen.dart';
 import 'package:prayers_times/screens/currentCity.dart';
 import 'package:prayers_times/screens/getNextPray.dart';
 import 'package:prayers_times/screens/prayerCard.dart';
@@ -247,6 +248,37 @@ class _PrayersTimesScreenState extends State<PrayersTimesScreen> {
                           ),
                           buildDayTimeCard(
                               context, prayerTimes[_currentIndex], ftColor),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 80,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(137, 255, 255, 255),
+                                  borderRadius: BorderRadius.circular(50),
+                                  border:
+                                      Border.all(color: Colors.green, width: 1),
+                                ),
+                                child: InkWell(
+                                  child: Image.asset(
+                                      'assets/images/qiblahIcon.png'),
+                                  onTap: () {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) {
+                                        return QiblahScreen();
+                                      },
+                                    ));
+                                  },
+                                ),
+                              )
+                            ],
+                          ),
                         ],
                       );
                     }

@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 2), () {
+    Timer(Duration(seconds: 1), () {
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => PrayersTimesScreen()));
     });
@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 185, 204, 228),
+        backgroundColor: Color.fromARGB(255, 215, 220, 226),
         body: Center(
           child: SingleChildScrollView(
             child: Column(

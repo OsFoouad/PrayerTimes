@@ -2,7 +2,6 @@
 
 import 'package:prayers_times/screens/splashScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:prayers_times/screens/Qiblah/qiblah_screen.dart';
 import 'package:prayers_times/theme/lightTheme.dart';
 import 'package:prayers_times/theme/themeNotifier.dart';
 import 'package:provider/provider.dart';
@@ -27,8 +26,7 @@ class MyApp extends StatelessWidget {
     final masgedImageAsset = themeNotifier.getMasgedImageAsset();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: SplashScreen(),
-      home: QiblahScreen(),
+      home: SplashScreen(),
       theme: themeNotifier.getTheme(),
     );
   }
