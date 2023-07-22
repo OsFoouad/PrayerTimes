@@ -11,4 +11,4 @@ apk for try will be available soon.
 
 </p>
 
-<img src="https://github.com/OsFoouad/PrayerTimes/blob/main/times.png" width="300" > <img src="https://github.com/OsFoouad/PrayerTimes/blob/main/qiblah.png" width="300" >
+<img src="https://github.com/OsFoouad/PrayerTimes/blob/main/times.jpg" width="300" > <img src="https://github.com/OsFoouad/PrayerTimes/blob/main/qiblah.jpg" width="300" >
